@@ -19,8 +19,6 @@ class Xtractor(ttkthemes.ThemedTk):
         ## entry for today's day
         self.date_entry = tkinter.ttk.Entry(self.main_frame, width = 30, state = tkinter.NORMAL, justify = 'center')
         self.date_entry.grid(row = 1, column = 1)
-        ## add today's date as a suggestion
-        self.date_entry.insert(tkinter.END, datetime.date.today())
         ## label for bridgeID
         self.bridgeID_label = tkinter.ttk.Label(self.main_frame, text = 'Bridge ID')
         self.bridgeID_label.grid(row = 2, column = 1)
@@ -87,6 +85,10 @@ class Xtractor(ttkthemes.ThemedTk):
                 break
         globalvars.bridgeID = path[m:n]
 
+        #update inspection_date
+        globalvars.inspection_date = path[-13:-5]
+        self.date_entry.insert(tkinter.END, globalvars.inspection_date)
+
         # fill the bridge ID bar
         self.bridgeID_entry.insert(tkinter.END, globalvars.bridgeID)
 
@@ -108,7 +110,7 @@ class Xtractor(ttkthemes.ThemedTk):
         # create file
         output_folder_pictures = globalvars.save_path + '/temp'
         image_caption_dict = existing_ppt.extract_images_and_captions_from_ppt(globalvars.file_path, output_folder_pictures)
-        output_file = globalvars.save_path + f"/{globalvars.bridgeID} Routine Inspection Photos_2024_ARRANGED.pptx"
+        output_file = globalvars.save_path + f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pptx"
         new_ppt.create_ppt_with_two_images_per_slide(globalvars.bridgeID, globalvars.inspection_date, image_caption_dict, output_folder_pictures, output_file)
 
 

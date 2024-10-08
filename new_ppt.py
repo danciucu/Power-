@@ -42,7 +42,7 @@ def create_ppt_with_two_images_per_slide(bridgeID, date, image_caption_dict, out
                 sp.element.getparent().remove(sp.element)  # Remove the placeholder element
 
         # Add the title
-        title_text = f"{bridgeID}001B00###N Routine Inspection {date}MM/DD/2024/"
+        title_text = f"{bridgeID} Routine Inspection {date[4:6]}/{date[-2:]}/{date[:4]}"
         title_size = 18
         title_textbox = formatting_ppt.Textbox.create_textbox(position=title_position, slide=slide, text=title_text, size=title_size, is_bold=True)
         
