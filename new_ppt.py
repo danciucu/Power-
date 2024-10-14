@@ -19,11 +19,11 @@ def create_ppt_with_two_images_per_slide(bridgeID, date, image_caption_dict, out
     # Title to the slide position
     inspectors_position = formatting_ppt.Textbox.position(left=0.5, top=0.58, width=7.58, height=0.33)
     # First image to the slide (top image) position
-    first_img_position = formatting_ppt.Textbox.position(left=1.08, top=0.92, width=6.33, height=4.33)
+    first_img_position = formatting_ppt.Textbox.position(left=1.08, top=0.92, width=5.77, height=4.33)
     # First caption to the slide (top image) position
     first_cap_position = formatting_ppt.Textbox.position(left=0.45, top=5.25, width=7.6, height=0.33)
     # Second image to the slide (bottom image) position
-    second_img_position = formatting_ppt.Textbox.position(left=1.08, top=5.75, width=6.33, height=4.33)
+    second_img_position = formatting_ppt.Textbox.position(left=1.08, top=5.75, width=5.77, height=4.33)
     # Second caption to the slide (bottom image) position
     second_cap_position = formatting_ppt.Textbox.position(left=0.45, top=10.08, width=7.6, height=0.33)
     # Page numbering to the slide position
