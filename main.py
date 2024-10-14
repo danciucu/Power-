@@ -111,6 +111,7 @@ class Xtractor(ttkthemes.ThemedTk):
         output_folder_pictures = globalvars.save_path + '/temp'
         image_caption_dict = existing_ppt.extract_images_and_captions_from_ppt(globalvars.file_path, output_folder_pictures)
         output_file = globalvars.save_path + f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pptx"
+        globalvars.inspectors = existing_ppt.extract_inspectors_from_ppt(globalvars.file_path)
         new_ppt.create_ppt_with_two_images_per_slide(globalvars.bridgeID, globalvars.inspection_date, image_caption_dict, output_folder_pictures, output_file)
 
 

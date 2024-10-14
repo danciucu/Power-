@@ -4,7 +4,7 @@ from pptx.util import Inches, Pt
 import math
 import shutil
 import os
-import formatting_ppt
+import formatting_ppt, globalvars
 
 def create_ppt_with_two_images_per_slide(bridgeID, date, image_caption_dict, output_folder, output_pptx_path):
     # Create a new presentation
@@ -48,7 +48,7 @@ def create_ppt_with_two_images_per_slide(bridgeID, date, image_caption_dict, out
         
         if i==0:
             # Add the inspectors caption
-            inspectors_text = 'Inspection performed by _____ and _____ of AECOM'
+            inspectors_text = str(globalvars.inspectors)
             inspectors_size = 12
             inspectors_textbox = formatting_ppt.Textbox.create_textbox(position=inspectors_position, slide=slide, text=inspectors_text, size=inspectors_size, is_bold=False)
         
@@ -70,7 +70,7 @@ def create_ppt_with_two_images_per_slide(bridgeID, date, image_caption_dict, out
             # Add the second image to the slide (bottom part)
             slide.shapes.add_picture(image_2_path, *second_img_position)
             # Add caption below the second image
-            img2_caption_text = caption_1
+            img2_caption_text = caption_2
             img2_caption_size = 12
             img2_caption_textbox = formatting_ppt.Textbox.create_textbox(position=second_cap_position, slide=slide, text=img2_caption_text, size=img2_caption_size, is_bold=False)
 
