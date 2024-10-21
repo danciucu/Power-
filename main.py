@@ -78,8 +78,8 @@ class Xtractor(ttkthemes.ThemedTk):
         # update bridgeID
         m = 0
         n = 0
-        for k in range(len(path)):
-            if path[k] == '0':
+        for k in range(len(path) - 3):
+            if path[k] == '0' and path[k + 3] == 'B':
                 m = k
                 n = m + 10
                 break

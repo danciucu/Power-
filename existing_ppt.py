@@ -56,5 +56,8 @@ def extract_inspectors_from_ppt(pptx_path):
         for shape in slide.shapes:
             if slide_num == 0 and hasattr(shape, 'text') and ("Inspection" in shape.text):
                 inspectors = str(shape.text)
+
+            else:
+                inspectors = 'Check Who Inspected The Bridge'
                 
     return inspectors
