@@ -12,13 +12,10 @@ def create_pdf(path, ppt_file_name, pdf_file_name, formatType = 32):
     # Join paths properly
     ppt_path = path + ppt_file_name
     pdf_path = path + pdf_file_name
-    
+
     # Replace forward slashes with backslashes for Windows
     ppt_path = ppt_path.replace("/", "\\")
     pdf_path = pdf_path.replace("/", "\\")
-
-    print(f"PowerPoint path: {ppt_path}")
-    print(f"PDF path: {pdf_path}")
 
     try:
         deck = powerpoint.Presentations.Open(ppt_path)

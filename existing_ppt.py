@@ -13,6 +13,8 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
     image_path_array = []
     # Array to hold captions
     caption_array = []
+    # Array to hold rotations
+    rotation_array = []
     # Array to hold image file paths and captions
     image_caption_dictionary = {}
 
@@ -24,6 +26,8 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
             if hasattr(shape, "image"):
                 # Get the image in the shape
                 image = shape.image
+                # Get the image rotation
+                rotation = shape.rotation
                 # Define output image name
                 image_name = f"image_{slide_num + 1}.jpg"
                 # Define output image path
@@ -34,6 +38,7 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
                     img_file.write(image.blob)
 
                 image_path_array.append(image_path)
+                rotation_array.append(rotation)
 
             if hasattr(shape, 'text') and ("Inspection" not in shape.text) and (len(shape.text) > 1):
                 caption_array.append(str(shape.text))
@@ -41,7 +46,7 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
     #print(caption_array)
 
     for i in range(len(image_path_array)):
-        image_caption_dictionary[image_path_array[i]] = caption_array[i]
+        image_caption_dictionary[image_path_array[i]] = [caption_array[i], rotation_array[i]]
 
     return image_caption_dictionary
 
