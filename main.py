@@ -14,7 +14,7 @@ class Xtractor(ttkthemes.ThemedTk):
         self.main_frame = tkinter.ttk.Frame(self)
         self.main_frame.pack()
         ## label for today's day
-        self.date_label = tkinter.ttk.Label(self.main_frame, text = 'Inspection Date')
+        self.date_label = tkinter.ttk.Label(self.main_frame, text = 'Inspection Date (YYYYMMDD)')
         self.date_label.grid(row = 0, column = 1)
         ## entry for today's day
         self.date_entry = tkinter.ttk.Entry(self.main_frame, width = 30, state = tkinter.NORMAL, justify = 'center')
@@ -51,6 +51,9 @@ class Xtractor(ttkthemes.ThemedTk):
 
     # define function that imports the Excel file
     def ppt_import(self):
+        # reset the entry boxes
+        self.date_entry.delete(0, 'end')
+        self.bridgeID_entry.delete(0, 'end')
         # variable that handles the Excel path
         path = tkinter.filedialog.askopenfilename(filetypes = (
             ("PowerPoint Files", "*.PPTX"),
@@ -79,13 +82,13 @@ class Xtractor(ttkthemes.ThemedTk):
         m = 0
         n = 0
         for k in range(len(path) - 3):
-            if path[k] == '0' and path[k + 3] == 'B':
+            if path[k].isdigit() and path[k + 3] == 'B':
                 m = k
                 n = m + 10
                 break
         globalvars.bridgeID = path[m:n]
 
-        #update inspection_date
+        # update inspection_date
         globalvars.inspection_date = path[-13:-5]
         self.date_entry.insert(tkinter.END, globalvars.inspection_date)
 
@@ -113,6 +116,7 @@ class Xtractor(ttkthemes.ThemedTk):
         output_file = globalvars.save_path + f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pptx"
         globalvars.inspectors = existing_ppt.extract_inspectors_from_ppt(globalvars.file_path)
         new_ppt.create_ppt_with_two_images_per_slide(globalvars.bridgeID, globalvars.inspection_date, image_caption_dict, output_folder_pictures, output_file)
+        print(f'{globalvars.bridgeID} photo document completed!')
 
 
 if __name__ == "__main__":

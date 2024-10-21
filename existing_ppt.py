@@ -49,15 +49,18 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
 def extract_inspectors_from_ppt(pptx_path):
     # Load the presentation
     prs = Presentation(pptx_path)
+
+    # Default value if no matching text is found
+    inspectors = 'Check Who Inspected The Bridge'
     
     # Loop through slides
     for slide_num, slide in enumerate(prs.slides):
-        # Loop through shapes in each slide
-        for shape in slide.shapes:
-            if slide_num == 0 and hasattr(shape, 'text') and ("Inspection" in shape.text):
-                inspectors = str(shape.text)
-
-            else:
-                inspectors = 'Check Who Inspected The Bridge'
+        # Check only the first slide
+        if slide_num == 0:
+            # Loop through shapes in the first slide
+            for shape in slide.shapes:
+                if hasattr(shape, 'text') and ("Inspection" in shape.text):
+                    inspectors = str(shape.text)
+                    break
                 
     return inspectors
