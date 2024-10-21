@@ -88,7 +88,14 @@ class Xtractor(ttkthemes.ThemedTk):
         globalvars.bridgeID = path[m:n]
 
         # update inspection_date
-        globalvars.inspection_date = path[-13:-5]
+        p = 0
+        q = 0
+        for k in range(len(path) - 4):
+            if path[k:k + 4] == '2024':
+                p = k
+                q = k + 8
+        globalvars.inspection_date = path[p:q]
+        # fill the inspection date bar
         self.date_entry.insert(tkinter.END, globalvars.inspection_date)
 
         # fill the bridge ID bar
