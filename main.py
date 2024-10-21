@@ -1,5 +1,4 @@
-import existing_ppt, new_ppt, globalvars
-import datetime
+import existing_ppt, new_ppt, new_pdf, globalvars
 import tkinter, ttkthemes, tkinter.filedialog
 
 class Xtractor(ttkthemes.ThemedTk):
@@ -113,9 +112,12 @@ class Xtractor(ttkthemes.ThemedTk):
         # create file
         output_folder_pictures = globalvars.save_path + '/temp'
         image_caption_dict = existing_ppt.extract_images_and_captions_from_ppt(globalvars.file_path, output_folder_pictures)
-        output_file = globalvars.save_path + f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pptx"
+        file_name_ppt = f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pptx"
+        file_name_pdf = f"/{globalvars.bridgeID} Routine Inspection Photos_{globalvars.inspection_date}_ARRANGED.pdf"
+        output_file = globalvars.save_path + file_name_ppt
         globalvars.inspectors = existing_ppt.extract_inspectors_from_ppt(globalvars.file_path)
         new_ppt.create_ppt_with_two_images_per_slide(globalvars.bridgeID, globalvars.inspection_date, image_caption_dict, output_folder_pictures, output_file)
+        new_pdf.create_pdf(globalvars.save_path, file_name_ppt, file_name_pdf)
         print(f'{globalvars.bridgeID} photo document completed!')
 
 
