@@ -44,10 +44,16 @@ def extract_images_and_captions_from_ppt(pptx_path, output_folder):
                 caption_array.append(str(shape.text))
 
     #print(caption_array)
+    #print(f'len(image_path_array) = {len(image_path_array)}')
+    #print(f'len(caption_array) = {len(caption_array)}')
+    #print(f'caption_array[25] = {caption_array[25]}')
+    #print(f'len(rotation_array) = {len(rotation_array)}')
 
-    for i in range(len(image_path_array)):
+    for i in range(len(caption_array)):
+        print(f'caption_array[i] = {caption_array[i]}')
         image_caption_dictionary[image_path_array[i]] = [caption_array[i], rotation_array[i]]
 
+    print(image_caption_dictionary)
     return image_caption_dictionary
 
 
