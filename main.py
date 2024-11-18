@@ -117,7 +117,7 @@ class Xtractor(ttkthemes.ThemedTk):
         m = 0
         n = 0
         for k in range(len(path) - 3):
-            if path[k].isdigit() and (path[k + 3] in ['C', 'R', 'T', 'B'] and path[k + 4] != 'e'):
+            if path[k].isdigit() and (path[k + 3] in ['C', 'R', 'T', 'B'] and path[k + 4].isdigit()):
                 m = k
                 n = m + 10
                 break
